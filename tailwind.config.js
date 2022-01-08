@@ -50,5 +50,8 @@ module.exports = {
         90: '90%',
       },
     },
+    fontFamily: {
+      montserrat: ['Montserrat', 'Sans-serif'],
+    },
   },
 };
