@@ -35,11 +35,8 @@ module.exports = {
           800: '#07051a',
           900: '#000000',
         },
-        lightGray: '#D2D2D2',
-        pink: '#EF5DA8',
-        lightPink: '#FFF9FC',
-        strongBlue: '#1A2787',
-        strongGray: '#6D7791',
+        pink: '#FF49CC',
+        black: '#000127',
       },
       borderWidth: {
         0: '0px',
@@ -52,6 +49,7 @@ module.exports = {
     },
     fontFamily: {
       montserrat: ['Montserrat', 'Sans-serif'],
+      nunito: ['Nunito', 'Sans-serif'],
     },
   },
 };
