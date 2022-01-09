@@ -14,6 +14,11 @@ const routes = [
     component: () => import('../views/Home.vue'),
   },
   {
+    path: '/home/country/:slug',
+    name: 'Country',
+    component: () => import('../views/CountryDetails.vue'),
+  },
+  {
     path: '/info',
     name: 'Info',
     component: () => import('../views/Info.vue'),

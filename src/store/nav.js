@@ -1,4 +1,4 @@
-export const navLinks = {
+export const navigation = {
   state: () => ({
     navLinks: [
       { id: 1, label: 'Home', link: '/home' },

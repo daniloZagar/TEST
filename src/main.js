@@ -2,13 +2,15 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
 import { createStore } from 'vuex';
-import { navLinks } from './store/nav';
+import { navigation } from './store/nav';
+import { data } from './store/data';
 import Default from '@/layouts/Default.vue';
 import Blank from '@/layouts/Blank.vue';
 import './css/tailwind.css';
 const store = createStore({
   modules: {
-    navLinks,
+    navigation,
+    data,
   },
 });
 const app = createApp(App);
