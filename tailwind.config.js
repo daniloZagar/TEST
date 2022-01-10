@@ -37,6 +37,7 @@ module.exports = {
         },
         pink: '#FF49CC',
         black: '#000127',
+        gray: '#363636',
       },
       borderWidth: {
         0: '0px',

@@ -2,7 +2,7 @@
   <transition name="slide">
     <div
       v-if="drawerOpen"
-      class="min-w-48 min-h-48 bg-black bg-opacity-90 backdrop-filter backdrop-blur shadow-2xl absolute top-16 right-0 px-8 py-4 text-lg"
+      class="min-w-48 min-h-48 bg-gray bg-opacity-90 backdrop-filter backdrop-blur shadow-2xl absolute top-16 right-0 px-8 py-4 text-lg"
     >
       <ul class="flex flex-col">
         <li

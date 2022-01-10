@@ -15,48 +15,21 @@ export default {
       type: Array,
     },
   },
-  watch: {
+  mounted() {
     // Overwriting base render method with actual data.
-    chartData: function () {
-      this.renderChart(
+    this.renderChart({
+      labels: this.labels,
+      datasets: [
         {
-          labels: this.labels,
-          datasets: [
-            {
-              label: this.label,
-              data: this.chartData,
-              borderColor: '#077187',
-              pointBorderColor: '#0E1428',
-              pointBackgroundColor: '#AFD6AC',
-              backgroundColor: '#ECECEC',
-            },
-          ],
+          label: this.label,
+          data: this.chartData,
+          borderColor: '#077187',
+          pointBorderColor: '#0E1428',
+          pointBackgroundColor: '#AFD6AC',
+          backgroundColor: '#ECECEC',
         },
-        {
-          responsive: true,
-          maintainAspectRatio: false,
-          legend: {
-            fontColor: 'white',
-          },
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  fontColor: 'white',
-                },
-              },
-            ],
-            xAxes: [
-              {
-                ticks: {
-                  fontColor: 'white',
-                },
-              },
-            ],
-          },
-        }
-      );
-    },
+      ],
+    });
   },
 };
 </script>
