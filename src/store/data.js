@@ -2,12 +2,18 @@ import axios from 'axios';
 export const data = {
   state: () => ({
     countries: [],
+    global: [],
     countryData: [],
   }),
   actions: {
     getCountries({ commit }) {
       axios.get('https://api.covid19api.com/summary').then((response) => {
         commit('SET_COUNTRIES', response.data.Countries);
+      });
+    },
+    getGlobalData({ commit }) {
+      axios.get('https://api.covid19api.com/summary').then((response) => {
+        commit('GLOBAL_DATA', response.data.Global);
       });
     },
     getCountryInfo({ commit }, payload) {
@@ -26,6 +32,9 @@ export const data = {
     },
     SET_COUNTRY(state, countryData) {
       state.countryData = countryData;
+    },
+    GLOBAL_DATA(state, global) {
+      state.global = global;
     },
   },
   getters: {},

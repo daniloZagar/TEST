@@ -5,7 +5,7 @@
       class="flex flex-col items-center pt-10"
     >
       <div class="w-full pl-5 pr-5 pb-10 md:pl-0 md:pr-0 md:w-1/2">
-        <h1 class="text-2xl text-white">
+        <h1 class="text-2xl text-white pb-10">
           Last week
           <span class="font-bold text-3xl">{{ this.case.toUpperCase() }}</span>
           cases
@@ -68,7 +68,6 @@ export default {
     },
   },
   async created() {
-    // this.$store.dispatch('getCountryInfo', this.getParams());
     await axios
       .get(
         `https://api.covid19api.com/total/country/${
