@@ -1,19 +1,14 @@
 import axios from 'axios';
 export const data = {
   state: () => ({
-    countries: [],
-    global: [],
+    totalData: [],
     countryData: [],
+    loadingStatus: false,
   }),
   actions: {
-    getCountries({ commit }) {
+    getTotalData({ commit }) {
       axios.get('https://api.covid19api.com/summary').then((response) => {
-        commit('SET_COUNTRIES', response.data.Countries);
-      });
-    },
-    getGlobalData({ commit }) {
-      axios.get('https://api.covid19api.com/summary').then((response) => {
-        commit('GLOBAL_DATA', response.data.Global);
+        commit('SET_TOTAL_DATA', response.data);
       });
     },
     getCountryInfo({ commit }, payload) {
@@ -27,8 +22,8 @@ export const data = {
     },
   },
   mutations: {
-    SET_COUNTRIES(state, countries) {
-      state.countries = countries;
+    SET_TOTAL_DATA(state, totalData) {
+      state.totalData = totalData;
     },
     SET_COUNTRY(state, countryData) {
       state.countryData = countryData;

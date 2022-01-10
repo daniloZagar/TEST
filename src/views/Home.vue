@@ -4,15 +4,15 @@
       <div class="flex flex-col pb-10 text-white">
         <h3 class="text-white text-2xl">
           Total Confirmed Cases:
-          {{ globalData.TotalConfirmed }}
+          {{ totalData.Global.TotalConfirmed }}
         </h3>
         <h3 class="text-white text-2xl">
           Total Death Cases:
-          {{ globalData.TotalDeaths }}
+          {{ totalData.Global.TotalDeaths }}
         </h3>
         <h3 class="text-white text-2xl">
           Total Recovered Cases:
-          {{ globalData.TotalRecovered }}
+          {{ totalData.Global.TotalRecovered }}
         </h3>
       </div>
       <table class="table-fixed border-collapse w-full">
@@ -41,7 +41,7 @@
           </tr>
         </thead>
         <tbody class="bg-gray-500">
-          <tr class="" v-for="country in fetchCountries" :key="country.ID">
+          <tr class="" v-for="country in totalData.Countries" :key="country.ID">
             <td
               class="text-xs sm:text-base md:text-lg text-center md:text-left text-white border-solid border-1 border-white pl-0 sm:pl-2 pt-2 pb-2"
             >
@@ -74,16 +74,12 @@
 <script>
 export default {
   computed: {
-    fetchCountries() {
-      return this.$store.state.data.countries;
-    },
-    globalData() {
-      return this.$store.state.data.global;
+    totalData() {
+      return this.$store.state.data.totalData;
     },
   },
-  mounted() {
-    this.$store.dispatch('getCountries');
-    this.$store.dispatch('getGlobalData');
+  created() {
+    this.$store.dispatch('getTotalData');
   },
 };
 </script>
