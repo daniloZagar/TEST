@@ -49,7 +49,7 @@
         <tbody class="bg-gray-500">
           <tr class="" v-for="country in countriesData" :key="country.ID">
             <td
-              class="font-poppins hover:bg-gray cursor-pointer text-xs sm:text-base md:text-lg text-center md:text-left text-white border-solid border-1 border-white pl-0 sm:pl-2 pt-2 pb-2"
+              class="font-poppins hover:bg-gray text-xs sm:text-base md:text-lg text-center md:text-left text-white border-solid border-1 border-white pl-0 sm:pl-2 pt-2 pb-2"
             >
               <router-link :to="'/home/country/' + country.Slug">
                 {{ country.Country }}
