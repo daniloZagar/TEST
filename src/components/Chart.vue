@@ -1,11 +1,26 @@
 <template>
-  <div>{{ fromToDate }}{{ getInfo }}</div>
+  <div>
+    {{ cases }}<list-chart :label="this.case" :chartData="cases"></list-chart>
+  </div>
 </template>
 
 <script>
+import axios from 'axios';
+import ListChart from './ListCharts.vue';
 export default {
+  components: {
+    ListChart,
+  },
+  props: {
+    case: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
+      cases: [],
+      casesChart: [],
       payload: {
         slug: '',
         case: '',
@@ -14,9 +29,9 @@ export default {
     };
   },
   computed: {
-    getInfo() {
-      return this.$store.state.data.countryData;
-    },
+    // countryData() {
+    //   return this.$store.state.data.countryData;
+    // },
     fromToDate() {
       let dateBefore = new Date();
       dateBefore.setDate(dateBefore.getDate() - 8);
@@ -28,15 +43,34 @@ export default {
   methods: {
     getParams() {
       this.payload.slug = this.$route.params.slug;
-      this.payload.case = 'confirmed';
+      this.payload.case = this.case;
       this.payload.date = this.fromToDate;
       return this.payload;
     },
+    getData() {
+      axios
+        .get(
+          `https://api.covid19api.com/total/country/${
+            this.getParams().slug
+          }/status/${this.getParams().case}?${this.getParams().date}`
+        )
+        .then((resp) => {
+          this.cases = resp.data.map((ex) => ex.Cases);
+          console.log(resp);
+          console.log(this.cases);
+        });
+    },
+    // getChartData() {
+    //   this.casesChart = this.getData().map((sd) => sd.Cases);
+    //   console.log(this.casesChart);
+    //   return this.casesChart;
+    // },
   },
-  mounted() {
-    this.$store.dispatch('getCountryInfo', this.getParams());
+  created() {
+    // this.$store.dispatch('getCountryInfo', this.getParams());
+    this.getData();
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

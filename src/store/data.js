@@ -13,7 +13,7 @@ export const data = {
     getCountryInfo({ commit }, payload) {
       axios
         .get(
-          `https://api.covid19api.com/country/${payload.slug}/status/${payload.case}?${payload.date}`
+          `https://api.covid19api.com/total/country/${payload.slug}/status/${payload.case}?${payload.date}`
         )
         .then((response) => {
           commit('SET_COUNTRY', response.data);
