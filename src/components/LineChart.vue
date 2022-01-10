@@ -38,7 +38,6 @@ export default {
           legend: {
             fontColor: 'white',
           },
-
           scales: {
             yAxes: [
               {
