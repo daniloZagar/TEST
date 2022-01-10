@@ -1,15 +1,24 @@
 <template>
   <div>
-    {{ cases }}<list-chart :label="this.case" :chartData="cases"></list-chart>
+    <div class="flex flex-col items-center">
+      <div class="w-full pl-5 pr-5 md:pl-0 md:pr-0 md:w-1/2">
+        {{ cases
+        }}<line-chart
+          :label="this.case"
+          :labels="formatedDates"
+          :chartData="cases"
+        ></line-chart>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import ListChart from './ListCharts.vue';
+import LineChart from './LineChart.vue';
 export default {
   components: {
-    ListChart,
+    LineChart,
   },
   props: {
     case: {
@@ -20,6 +29,8 @@ export default {
   data() {
     return {
       cases: [],
+      dates: [],
+      formatedDates: [],
       casesChart: [],
       payload: {
         slug: '',
@@ -29,9 +40,6 @@ export default {
     };
   },
   computed: {
-    // countryData() {
-    //   return this.$store.state.data.countryData;
-    // },
     fromToDate() {
       let dateBefore = new Date();
       dateBefore.setDate(dateBefore.getDate() - 8);
@@ -55,18 +63,16 @@ export default {
           }/status/${this.getParams().case}?${this.getParams().date}`
         )
         .then((resp) => {
-          this.cases = resp.data.map((ex) => ex.Cases);
-          console.log(resp);
-          console.log(this.cases);
+          this.cases = resp.data.map((cas) => cas.Cases);
+          this.dates = resp.data.map((dat) => dat.Date);
+          this.dates.map((d) => {
+            let date = d.substring(0, 10);
+            this.formatedDates.push(date);
+          });
         });
     },
-    // getChartData() {
-    //   this.casesChart = this.getData().map((sd) => sd.Cases);
-    //   console.log(this.casesChart);
-    //   return this.casesChart;
-    // },
   },
-  created() {
+  mounted() {
     // this.$store.dispatch('getCountryInfo', this.getParams());
     this.getData();
   },
