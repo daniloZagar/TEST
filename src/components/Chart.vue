@@ -82,6 +82,9 @@ export default {
           let date = d.substring(0, 10);
           this.formatedDates.push(date);
         });
+      })
+      .catch((error) => {
+        console.log(error);
       });
   },
 };
